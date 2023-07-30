@@ -1,12 +1,9 @@
 import './globals.css'
 import React from 'react';
-import { usePathname } from 'next/navigation';
-import HeaderLayout from '../features/headerLayout';
-import AsideLayout from '../features/asideLayout';
+import HeaderLayout from '../../features/headerLayout';
+import AsideLayout from '../../features/asideLayout';
 import type { Metadata } from 'next'
-import { Database } from "../../database.types";
-import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
-import { ReduxProvider } from '../redux/features/provider';
+import { ReduxProvider } from '../../redux/features/provider';
 
 export const metadata: Metadata = {
   title: 'todo app',
@@ -18,12 +15,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
-
-  if(pathname === '/login') 
-  return (
-    <></>
-  )
 
   return (
     <html lang="ja">

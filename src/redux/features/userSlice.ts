@@ -21,7 +21,11 @@ const loginUserSlice = createSlice({
             }
         },
         updateUser : (state, action) => {
-            state = action.payload
+            console.log(action.payload)
+            return({
+                id: action.payload.id,
+                email: action.payload.email
+            })
         }
     }
 })
