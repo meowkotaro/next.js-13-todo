@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import supabase from "../../utils/supabase-client";
 import { ArrowLeftOnRectangleIcon, ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/solid";
-import { useAppSelector } from "@/redux/features/hooks";
+import { useAppSelector } from "../../redux/features/hooks";
 
 const Auth: React.FC = () => {
     const [email, setEmail] = useState('')

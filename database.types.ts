@@ -39,21 +39,32 @@ export interface Database {
           created_at: string
           id: string
           name: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           name?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           name?: string | null
+          user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "tags_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       tasks: {
         Row: {
+          completed: boolean
           created_at: string
           id: string
           note: string | null
@@ -61,6 +72,7 @@ export interface Database {
           user_id: string | null
         }
         Insert: {
+          completed?: boolean
           created_at?: string
           id?: string
           note?: string | null
@@ -68,6 +80,7 @@ export interface Database {
           user_id?: string | null
         }
         Update: {
+          completed?: boolean
           created_at?: string
           id?: string
           note?: string | null
