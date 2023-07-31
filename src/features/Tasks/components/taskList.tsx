@@ -1,22 +1,28 @@
 import React from "react";
 import TaskItem from "./taskItem";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Database } from "../../../../database.types";
+import { cookies } from "next/headers";
+import AddButton from "./addButton";
 
-const TaskList:React.FC = () => {
+const TaskList:React.FC = async () => {
+    cookies()
+    const supabase = createServerComponentClient<Database>({cookies})
+
+    const { data: tasks } = await supabase
+    .from('tasks')
+    .select('*')
+    .order('created_at', { ascending: true })
+    
+    console.log(tasks)
     return (
     <>
         <ul>
-            <TaskItem/>
-            <TaskItem/>
-            <TaskItem/>
-            <TaskItem/>
+            {tasks?.map(task => (
+                <TaskItem key={task.id} {...task} color="blue"/>
+            ))}
         </ul>
-        <button className="mt-2 flex items-center gap-2 group">
-            <div className="h-5 w-5 rounded-full text-red-500 group-hover:text-white group-hover:bg-red-500">
-                <PlusIcon className="w-5"/>
-            </div>
-            <p className="text-base font-medium text-gray-400 group-hover:text-red-400">タスクを追加</p>
-        </button>
+        <AddButton/>
     </>
 
 
