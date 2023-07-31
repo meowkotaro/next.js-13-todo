@@ -17,7 +17,9 @@ export default function StoryWrapper({
     <html lang="ja">
       <body className='overflow-hidden bg-neutral-800'>
         <ReduxProvider>
+          <div className='h-screen'>
             {children}
+          </div>
         </ReduxProvider>
       </body>
     </html>
